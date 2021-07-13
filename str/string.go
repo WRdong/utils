@@ -204,6 +204,30 @@ func Ufirst(s string) string {
 	return s
 }
 
+
+// 驼峰式写法转为下划线写法
+func Camel2Case(name string) string {
+	var r []rune
+	for i, c := range name {
+		if c >= 'A' && c <= 'Z' {
+			if i != 0 {
+				r = append(r, '_')
+			}
+			r = append(r, c + 32)
+		} else {
+			r = append(r, c)
+		}
+	}
+	return string(r)
+}
+
+// 下划线写法转为驼峰写法
+func Case2Camel(name string) string {
+	name = strings.Replace(name, "_", " ", -1)
+	name = strings.Title(name)
+	return strings.Replace(name, " ", "", -1)
+}
+
 // String returns a string of any type
 func String(iface interface{}) string {
 	switch val := iface.(type) {
